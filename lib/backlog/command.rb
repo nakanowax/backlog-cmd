@@ -52,8 +52,20 @@ module Backlog
 
     desc "issue", "get issuse data"
     method_option :key, :required => true, :aliases => "-k", :type => :string
+    method_option :update, :aliases => "-U", :type => :boolean, :default => false
     def issue
-      issue = @@proxy.call("backlog.getIssue", options[:key])
+      if options[:update]
+
+=begin
+        options.each do |param, key|
+          puts "parasm : #{param} , key : #{key}"
+        end
+
+        # issue = @@proxy.call("backlog.updateIssue", params)
+=end
+      else
+        issue = @@proxy.call("backlog.getIssue", options[:key])
+      end
 
       puts "ID            : #{issue['id']}"
       puts "Key           : #{issue['key']}"
@@ -65,6 +77,28 @@ module Backlog
       puts "終了日        : #{issue['due_date']}"
       puts "予定時間      : #{issue['actual_hours']}"
       puts "担当者        : #{issue['assigner']['name']}"
+    end
+
+    desc "status", "get/update issue status"
+    method_option :key, :required => true, :aliases => "-k", :type => :string
+    method_option :update, :aliases => "-U", :type => :boolean, :default => false
+    method_option :status_id, :aliases => "-s", :type => :numeric
+    method_option :assign_id, :aliases => "-a", :type => :numeric
+    def status
+      if options[:update]
+        return puts "required --status_id optons." if !options[:status_id]
+
+        params = {
+          :key => options[:key],
+          :statusId => options[:status_id]
+        }
+        params[:assignerId] = options[:assign_id] if options[:assign_id]
+
+        status = @@proxy.call("backlog.switchStatus", params)
+      else
+        status = @@proxy.call("backlog.getIssue", options[:key])
+        puts "#{status['key']} #{status['summary']} : #{status['assigner']['name']} (#{status['assigner']['id']}) => #{status["status"]["name"]} "
+      end
     end
 
     desc "hanzawa times", "puts times 倍返しだ！！"

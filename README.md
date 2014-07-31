@@ -28,6 +28,13 @@ project list:
     $ bundle exec backlog project -k KEY
     $ bundle exec backlog project -i ID
 
+    ### issue
+    $ bundle exec backlog issue -k KEY-111
+
+    ### status
+    $ bundle exec backlog status -k KEY-111
+    $ bundle exec backlog status -k KEY-111 -U -s 4 (完了) -a [user_id]
+
 ## Contributing
 
 1. Fork it ( http://github.com/[my-github-username]/backlog/fork )
