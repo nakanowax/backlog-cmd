@@ -33,7 +33,7 @@ project list:
 
     ### status
     $ bundle exec backlog status -k KEY-111
-    $ bundle exec backlog status -k KEY-111 -U -s 4 ($B40N;(B) -a [user_id]
+    $ bundle exec backlog status -k KEY-111 -U -s 4 (完了) -a [user_id]
 
 ## Contributing
 
