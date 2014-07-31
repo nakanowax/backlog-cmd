@@ -30,7 +30,7 @@ module Backlog
       puts 'sucusess!!'
     end
 
-    desc "project", "get puroject list"
+    desc "project", "get puroject data"
     method_option :key , :aliases => "-k", :type => :string
     method_option :id, :aliases => "-i", :type => :numeric
     def project
@@ -48,6 +48,23 @@ module Backlog
       projects.each do |proj|
         puts "#{proj['id']} | #{proj['key']} | #{proj['name']} | #{proj['url']}"
       end
+    end
+
+    desc "issue", "get issuse data"
+    method_option :key, :required => true, :aliases => "-k", :type => :string
+    def issue
+      issue = @@proxy.call("backlog.getIssue", options[:key])
+
+      puts "ID            : #{issue['id']}"
+      puts "Key           : #{issue['key']}"
+      puts "Title         : #{issue['summary']}"
+      puts "Status        : #{issue['status']['name']}"
+      puts "Issue Type    : #{issue['issueType']['name']}"
+      puts "マイルストーン: #{issue['milestones'][0]['name']}"
+      puts "開始日        : #{issue['start_date']}"
+      puts "終了日        : #{issue['due_date']}"
+      puts "予定時間      : #{issue['actual_hours']}"
+      puts "担当者        : #{issue['assigner']['name']}"
     end
 
     desc "hanzawa times", "puts times 倍返しだ！！"
