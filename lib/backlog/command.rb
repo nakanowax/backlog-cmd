@@ -82,8 +82,8 @@ module Backlog
     desc "status", "get/update issue status"
     method_option :key, :required => true, :aliases => "-k", :type => :string
     method_option :update, :aliases => "-U", :type => :boolean, :default => false
-    method_option :status_id, :aliases => "-s", :type => :numeric
-    method_option :assign_id, :aliases => "-a", :type => :numeric
+    method_option :status_id, :aliases => "-si", :type => :numeric
+    method_option :assign_id, :aliases => "-ai", :type => :numeric
     def status
       if options[:update]
         return puts "required --status_id optons." if !options[:status_id]
@@ -101,12 +101,14 @@ module Backlog
       end
     end
 
-    desc "hanzawa times", "puts times 倍返しだ！！"
-    method_option :strong, :type => :boolean, :default => false
-    def hanzawa(times)
-      color = options[:strong] ? :red : nil
-      output = "#{times}倍返しだ！！"
-      say(output, color)
+    desc "users", "get project users"
+    method_option :project_id, :required => true, :aliases => "-p", :type => :numeric
+    def users
+      users = @@proxy.call("backlog.getUsers", options[:project_id])
+      users.each do |user|
+        puts " #{user['id']}:#{user['name']}"
+      end
     end
+
   end
 end

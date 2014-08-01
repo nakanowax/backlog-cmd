@@ -35,6 +35,9 @@ project list:
     $ bundle exec backlog status -k KEY-111
     $ bundle exec backlog status -k KEY-111 -U -s 4 (完了) -a [user_id]
 
+    ### users
+    $ bundle exec backlog users --project-id [project_id]
+
 ## Contributing
 
 1. Fork it ( http://github.com/[my-github-username]/backlog/fork )
