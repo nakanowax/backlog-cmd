@@ -30,6 +30,7 @@ project list:
 
     ### issue
     $ bundle exec backlog issue -k KEY-111
+    $ bundle exec backlog issue -k KEY-111 -U --description '[description]'
 
     ### status
     $ bundle exec backlog status -k KEY-111

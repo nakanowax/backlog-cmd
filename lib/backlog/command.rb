@@ -53,16 +53,34 @@ module Backlog
     desc "issue", "get issuse data"
     method_option :key, :required => true, :aliases => "-k", :type => :string
     method_option :update, :aliases => "-U", :type => :boolean, :default => false
+    method_option :summary, :type => :string
+    method_option :parent_issue_id, :type => :numeric
+    method_option :description, :type => :string
+    method_option :start_date, :type => :string
+    method_option :due_date, :type => :string
+    method_option :estimated_hours, :type => :string
+    method_option :actual_hours, :type => :string
+    method_option :issueTypeId, :type => :numeric
+    method_option :issueType, :type => :string
+    method_option :componentId, :type => :numeric
+    method_option :component, :type => :string
+    method_option :versionId, :type => :numeric
+    method_option :version, :type => :string
+    method_option :milestoneId, :type => :numeric
+    method_option :milestone, :type => :string
+    method_option :priorityId, :type => :numeric
+    method_option :priority, :type => :string
+    method_option :assignerId, :type => :numeric
+    method_option :resolutionId, :type => :numeric
+    method_option :comment, :type => :string
     def issue
       if options[:update]
-
-=begin
-        options.each do |param, key|
-          puts "parasm : #{param} , key : #{key}"
+        params = {}
+        options.each do |key, param|
+          puts "param: #{param} , key: #{key}"
+          params[key] = param
         end
-
-        # issue = @@proxy.call("backlog.updateIssue", params)
-=end
+        issue = @@proxy.call("backlog.updateIssue", params)
       else
         issue = @@proxy.call("backlog.getIssue", options[:key])
       end
