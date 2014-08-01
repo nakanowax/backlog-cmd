@@ -5,11 +5,9 @@ TODO: Write a gem description
 ## Installation
 
     $ git clone git@github.com:nakanowax/backlog-cmd.git
-    $ bundle install
-    $ bundle exec backlog init -s [space] -u [user] -p [password]
     $ rake build
     $ gem install pkg/backlog-0.0.1.gem
-
+    $ backlog init -s [space] -u [user] -p [password]
 
 <!--
 Add this line to your application's Gemfile:
@@ -28,23 +26,23 @@ Or install it yourself as:
 ## Usage
 
     ### settings
-    $ bundle exec backlog init -s [space] -u [user] -p [password]
+    $ backlog init -s [space] -u [user] -p [password]
 
     ### project
-    $ bundle exec backlog project
-    $ bundle exec backlog project -k KEY
-    $ bundle exec backlog project -i ID
+    $ backlog project
+    $ backlog project -k KEY
+    $ backlog project -i ID
 
     ### issue
-    $ bundle exec backlog issue -k KEY-111
-    $ bundle exec backlog issue -k KEY-111 -U --description '[description]'
+    $ backlog issue -k KEY-111
+    $ backlog issue -k KEY-111 -U --description '[description]'
 
     ### status
-    $ bundle exec backlog status -k KEY-111
-    $ bundle exec backlog status -k KEY-111 -U -s 4 (完了) -a [user_id]
+    $ backlog status -k KEY-111
+    $ backlog status -k KEY-111 -U -s 4 (完了) -a [user_id]
 
     ### users
-    $ bundle exec backlog users --project-id [project_id]
+    $ backlog users --project-id [project_id]
 
 ## Contributing
 
