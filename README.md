@@ -4,16 +4,14 @@ TODO: Write a gem description
 
 ## Installation
 
-### 現状 install 方法
-
-   $ git clone git@github.com:nakanowax/backlog-cmd.git
-   $ bundle install
-   $ bundle exec backlog init -s [space] -u [user] -p [password]
-   $ rake build
-   $ gem install pkg/backlog-0.0.1.gem
+    $ git clone git@github.com:nakanowax/backlog-cmd.git
+    $ bundle install
+    $ bundle exec backlog init -s [space] -u [user] -p [password]
+    $ rake build
+    $ gem install pkg/backlog-0.0.1.gem
 
 
-### まだ。。。
+<!--
 Add this line to your application's Gemfile:
 
     gem 'backlog'
@@ -25,10 +23,9 @@ And then execute:
 Or install it yourself as:
 
     $ gem install backlog
+-->
 
 ## Usage
-
-project list:
 
     ### settings
     $ bundle exec backlog init -s [space] -u [user] -p [password]
