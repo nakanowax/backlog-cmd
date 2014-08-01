@@ -4,6 +4,14 @@ TODO: Write a gem description
 
 ## Installation
 
+### 現状 install 方法
+
+   git clone git@github.com:nakanowax/backlog-cmd.git
+   rake build
+   gem install pkg/backlog-0.0.1.gem
+
+
+### まだ。。。
 Add this line to your application's Gemfile:
 
     gem 'backlog'
