@@ -6,9 +6,11 @@ TODO: Write a gem description
 
 ### 現状 install 方法
 
-   git clone git@github.com:nakanowax/backlog-cmd.git
-   rake build
-   gem install pkg/backlog-0.0.1.gem
+   $ git clone git@github.com:nakanowax/backlog-cmd.git
+   $ bundle install
+   $ bundle exec backlog init -s [space] -u [user] -p [password]
+   $ rake build
+   $ gem install pkg/backlog-0.0.1.gem
 
 
 ### まだ。。。
