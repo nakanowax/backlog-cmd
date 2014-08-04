@@ -50,6 +50,28 @@ module Backlog
       end
     end
 
+    desc "find", "find issue"
+    method_option :projectId, :required => true, :type => :numeric
+    method_option :issueType, :type => :string
+    method_option :milestoneId, :type => :numeric
+    method_option :statusId, :type => :numeric
+    method_option :priorityId, :type => :numeric
+    method_option :assignerId, :type => :numeric
+    def find
+      params = {}
+      options.each do |key, param|
+        puts "param: #{param} , key: #{key}"
+        params[key] = param
+      end
+      issue = @@proxy.call("backlog.findIssue", params)
+
+      issue.each do |row|
+        milestones = ( row['milestones'] && row['milestones'][0] ) ? "#{row['milestones'][0]['name']}(#{row['milestones'][0]['id']})" : ''
+        assigner = ( row['assigner'] ) ? "#{row['assigner']['name']}(#{row['assigner']['id']})" : ''
+        puts "#{row['id']} | #{row['key']} | #{row['issueType']['name']} | #{row['status']['name']} | #{row['priority']['name']} | #{assigner} | #{milestones} | #{row['summary']} | #{row['start_date']} | #{row['due_date']} | #{row['estimated_hours']} | #{row['actual_hours']} | #{row['url']}"
+      end
+    end
+
     desc "issue", "get issuse data"
     method_option :key, :required => true, :aliases => "-k", :type => :string
     method_option :update, :aliases => "-U", :type => :boolean, :default => false
