@@ -100,8 +100,8 @@ module Backlog
     desc "status", "get/update issue status"
     method_option :key, :required => true, :aliases => "-k", :type => :string
     method_option :update, :aliases => "-U", :type => :boolean, :default => false
-    method_option :status_id, :aliases => "-si", :type => :numeric
-    method_option :assign_id, :aliases => "-ai", :type => :numeric
+    method_option :status_id, :type => :numeric
+    method_option :assign_id, :type => :numeric
     def status
       if options[:update]
         return puts "required --status_id optons." if !options[:status_id]
@@ -113,10 +113,9 @@ module Backlog
         params[:assignerId] = options[:assign_id] if options[:assign_id]
 
         status = @@proxy.call("backlog.switchStatus", params)
-      else
-        status = @@proxy.call("backlog.getIssue", options[:key])
-        puts "#{status['key']} #{status['summary']} : #{status['assigner']['name']} (#{status['assigner']['id']}) => #{status["status"]["name"]} "
       end
+      status = @@proxy.call("backlog.getIssue", options[:key])
+      puts "#{status['key']} #{status['summary']} : #{status['assigner']['name']} (#{status['assigner']['id']}) => #{status["status"]["name"]} "
     end
 
     desc "users", "get project users"
