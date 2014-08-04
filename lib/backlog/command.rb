@@ -93,7 +93,8 @@ module Backlog
       puts "マイルストーン: #{issue['milestones'][0]['name']}"
       puts "開始日        : #{issue['start_date']}"
       puts "終了日        : #{issue['due_date']}"
-      puts "予定時間      : #{issue['actual_hours']}"
+      puts "予定時間      : #{issue['estimated_hours']}"
+      puts "実績時間      : #{issue['actual_hours']}"
       puts "担当者        : #{issue['assigner']['name']}"
     end
 
